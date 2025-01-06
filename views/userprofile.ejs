@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+       <%- include('./partials/loggedhead.ejs') %>
+<body class="body">
+
+          
+
+    
+<div class="cask">
+   <div class="profilepic" style="background-image: url('<%= pic %>');">
+      <div class="canit">
+         <a href="/profile_pic_view" class="btn btn-dark text-white ct">View</a>
+         <a href="/profile_pic_edit" class="btn btn-dark text-white ct">Edit</a> 
+      </div>
+   </div>
+ 
+      <div class="captch roll">
+         <div class="dips">
+            <h2>Username</h2>
+            <p><%= name %></p>
+         </div>
+         <a href="edit" class="btn btn-dark text-white p-2 ct" >Edit</a>
+      </div>
+      <div class="captch roll">
+         <div class="dips">
+            <h2>Faculty</h2>
+            <p><%= faculty %></p>
+         </div>
+      </div>
+      <div class="captch roll">
+         <div class="dips">
+            <h2>Department</h2>
+            <p><%= department %></p>
+         </div>
+         <a href="edit" class="btn btn-dark text-white p-2 ct" >Edit</a>
+      </div>
+      <div class="captch roll">
+         <div class="dips">
+            <h2>Email</h2>
+            <p><%= email %></p>
+         </div>
+      </div>
+      <div class="captch roll">
+         <div class="dips">
+            <h2>Phone</h2>
+            <p><%= phone %></p>
+         </div>
+      </div>
+      <div class="captch roll">
+         <div class="dips">
+            <h2>Level</h2>
+            <p><%= level %></p>
+         </div>
+      </div>
+      <div class=" captch roll">
+         <div class="dips">
+            <h2>Gender</h2>
+            <p><%= gender %></p>
+         </div>
+      </div>
+</div>
+
+   
+       
+       
+      <%- include('./partials/loggedinhead.ejs') %>
+
+
+
+
+  
+   </script>
+
+
+</body>
+</html>

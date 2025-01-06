@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+       <%- include('./partials/loggedhead.ejs') %>
+<body class="body">
+
+          
+
+    
+<div class="cask"> 
+    <div class="div" style="display: flex; align-items: center; justify-self: center;">
+            
+        <% if (errormsg) { %>
+          <div class="card bg-white border-danger text-danger p-3 mt-5 text-center"><%= errormsg %></div>
+        <% } %>
+        
+          </div>
+     <h2 style="text-align: center; margin-top: 40px;">Contribute to our community</h2>
+   <div class="cont">
+   <div>
+   
+
+    <div class="formmin">
+       <form action="/contribute" class="file_form" id="file_form" method="post" enctype="multipart/form-data">
+           <div class="m-4 rico" id="attach_file" >
+         
+               <img src="/images/icons/img.png" alt="" class="cico">
+   
+               <img src="/images/icons/pdficon.png" alt="" class="cico">
+               <div class="card p-2 border-0">
+                <h4>Click to add a pdf or image file </h4>
+               </div>
+   
+           </div>
+           <div class="imgcontri">
+               <div id="roast">
+              <div class="card bg-white border-danger text-danger text-center p-2 m-2 d-none rat">File must not exceed 10mb</div>
+              <div class="card bg-white border-danger text-danger text-center p-2 m-2 d-none rat" id="rat">You cannot add more than three file</div>
+              <div class="card bg-white border-danger text-danger text-center p-2 m-2 d-none rat" id="rat">No video files allowed</div>
+                   <div>
+                    <label for="postText">Title</label>
+                   <textarea name="postText" rows="10" placeholder="Make a post" id=""></textarea>
+
+                   </div>
+                 
+                 
+               </div>
+   
+           </div>
+           
+         
+   
+           </div>
+           <input type="submit" id="signupbtn" value="Contribute">
+       </form>
+    </div>
+   </div>
+   </div>
+</div>
+
+   
+       
+       
+      <%- include('./partials/loggedinhead.ejs') %>
+
+
+
+
+  
+  <script>
+    const addi = document.getElementById('attach_file')
+    const addil = document.getElementById('attach_file')
+    const holder = document.getElementById('roast')
+    const rats = document.querySelectorAll('.rat')
+    const inputs = document.querySelectorAll('input')
+    let count = 0
+
+
+    addi.addEventListener('click',() =>{
+
+      const file =document.createElement('div')
+      file.innerHTML =`  
+                    <input type="file" name="file">
+      `
+
+      if (count < 3) {
+        count ++;
+        rats.forEach((rat) =>{
+          rat.classList.remove('d-none')
+
+        })
+        holder.appendChild(file)
+      }
+    })
+  </script>
+
+
+</body>
+</html>

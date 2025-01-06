@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/loggedhead.ejs') %>
+<body class="body">
+<div class="cask">
+    <div class="cset">
+        <section class="bg-primary p-2 posit mt-5 d-flex flex-wrap justify-content-center align-items-center">
+            <h1 class="text-white mx-auto text-center fs-5 p-2">Properties of Matter </h1>
+    
+           
+    
+            <div class="btn btn-dark" id="getquestions">Star quiz</div>
+      
+            <div class="text-white bg-primary p-2 m-2 fs-3" id="timer">35m : 00s</div>
+        </section>
+    
+        <div class="card">
+            <div class="card bg-dark text-light p-3 m-3  slide" id="show">
+                To begin the quiz, click on the start quiz button. On doing so the timer will begin, once the timer begins you have 35 minutes to attempt 50 questions. if the timer runs out the quiz will automaticallly end by itself. Please be adviced your answers cannot be changed, once you have selected an option it cannot be altered. So it is best to be at the very least 80% sure of your answers before making a choice.  
+            </div>
+            <progress max="100" value="100" style="width: 100%;"   id="progress"></progress>
+            <div class="card-body" id="cardbod"></div>
+        </div>
+     </div>
+
+    <div class="m-3 d-flex flex-wrap align-items-center justify-content-left">
+           
+        <a href="#" class="btn btn-success text-white m-2 w-25" id="previous">Previous</a>
+         <a href="#" class="btn btn-warning text-white m-2 w-25" id="next" >Next</a>
+        <a href="#" class="btn btn-danger text-white m-2 w-25" id="end">End</a>
+        <a href="/phy101" class="btn btn-success text-white m-2 d-none" id="restart">Re-take Quiz</a>
+        
+    
+        <div class="btn" >
+           
+            <span class="text-white bg-primary p-2 m-2" id="at"> Attempted : 0/10</span>
+        </div>
+    </div>
+
+
+</div>
+
+         <%- include('./partials/loggedinhead.ejs') %>
+<%- include('./partials/script.ejs') %>
+    <script type="module" src="/javascript/phy101.js"></script>
+    <script src="/javascript/navtoggle.js"></script>
+</body>
+</html>

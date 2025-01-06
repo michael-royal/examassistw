@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs') %>
+<body id="creep">
+    <div class="contined">
+
+      <% if (errormsg) { %>
+        <div class="card bg-white border-danger text-danger p-3 mt-5 text-center"><%= errormsg %></div>
+      <% } %>
+      
+      <div class="card text-warning p-2 w-70 mt-5 mb-3 text-center bg-white border-warning">
+        Please fill in all fields
+      </div>
+      <form class="main_form" method="post" action="/sign_new_user" enctype="multipart/form-data">
+          <div class="name act">
+              <div class="acts">
+                  <label for="firstname">First name <span>*</span></label>
+                  <input type="text" placeholder="John" id="firstname" name="firstname">
+                  <div class="card bg-white text-danger p-2 m-1 border-0 d-none errormsg">Incorrect Name format</div>
+                  <p >Must be atleast 3 characters long and must contain a capital letter</p>
+              </div>
+              <div class="acts">
+                  <label for="lastname">Last name <span>*</span></label>
+                  <input type="text" placeholder="Doe" id="lastname" name="lastname">
+                  <div class="card bg-white text-danger p-2 m-1 border-0 d-none errormsg">Incorrect name format</div>
+                  <p >Must be atleast 3 characters long and must contain a capital letter</p>
+              </div>
+          </div>
+          <div class="name act">
+              <div class="acts" id="emailHolder">
+                  <label for="phone">Email <span>*</span></label>
+                  <input type="email" placeholder="Johnnyd@gmail.com" id="email" name="email">
+                  <div class="card bg-white text-danger p-2 m-1 border-0 d-none errormsg">Not a valid email</div>
+                  <p >Must be in the format example@gmail.com/example123@gmail.com for email addresses with numbers</p>
+              </div>
+              <div class="acts" id="phoneHolder">
+                  <label for="phone">Phone <span>*</span></label>
+                  <input type="text" placeholder="09188398720" id="phone" name="phone">
+                  <div class="card bg-white text-danger p-2 m-1 border-0 d-none errormsg">Incorrect Phone number format</div>
+                  <p >Must be a valid phone number</p>
+              </div>
+          </div>
+          <div class="name act">
+              <div class="acts">
+                  <label for="level">Level <span>*</span></label>
+                  <input type="text" id="level" name="level" value="100" readonly>
+                  <div class="card bg-white text-danger p-2 m-1 border-0 d-none errormsg">Incorrect password format</div>
+              </div>
+              <div class="acts">
+                  <label for="confirmpwd">Gender <span>*</span></label>
+                  <select id="gender" name="gender">
+                    <option value=" ">Choose...</option>
+                    <option value="Male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+                  <div class="card bg-white text-danger p-2 m-1 border-0 d-none errormsg">Passwords do not match</div>
+              </div>
+          </div>
+          <div class="name act">
+              <div class="acts">
+                  <label for="Password">Password <span>*</span></label>
+                  <input type="password" placeholder="********" id="password" name="password">
+                  <div class="card bg-white text-danger p-2 m-1 border-0 d-none errormsg">Incorrect password format</div>
+                  <p >Must be atleast 8 characters long</p>
+              </div>
+             <div class="acts">
+                  <label for="confirmpwd">Confirm <span>*</span></label>
+                  <input type="password" placeholder="********" id="confirmpwd" name="confirmpwd">
+                  <div class="card bg-white text-danger p-2 m-1 border-0 d-none errormsg">Passwords do not match</div>
+                  <p >This must be a match with the password</p>
+              </div> 
+
+          </div>
+
+          
+          <div class="name act">
+              <div class="acts">
+                  <label for="faculty">Faculty <span>*</span></label>
+                  <input type="text" readonly id="faculty" name="faculty" value="Science">
+              </div>
+              <div class="acts">
+                  <label for="department">Department <span>*</span></label>
+                  <select id="inputState" name="department">
+                      <option value=" ">Choose...</option>
+                      <option value="Mathematics">Mathematics</option>
+                      <option value="Chemistry">Chemistry</option>
+                      <option value="Physics">Physics</option>
+                      <option value="PSB">Plant Science and Biotechnology</option>
+                      <option value="MCB">Micro Biology</option>
+                      <option value="AEB">Animal and Enivronmental Biology</option>
+                      <option value="Mari-time">Maritime Science</option>
+                      <option value="BCH">Biochemistry</option>
+                      <option value="Computer Science">Computer Science</option>
+                      <option value="Geology">Geology</option>
+                  </select>
+              </div>
+          </div>
+          <div class="name act">
+                <div class="acts">
+            <label for="faculty">Profile Pic <span>*</span></label>
+            <input type="file"  id="profile" name="profile">
+            <div class="card bg-white text-danger p-2 m-1 border-0 d-none errormsg"> </div>
+         
+            <div class="acts">
+                <label for="agree">T'c and C's <span>*</span></label>
+                <input type="checkbox" placeholder="********" id="agree" name="agree">
+                <div class="card bg-white text-danger p-2 m-1 border-0 d-none errormsg"></div>
+                <p >Click to confirm that you have read and agreed to our <a href="/privacy">Privacy Policy</a> and our <a href="/terms">Terms and Conditions</a></p>
+            </div> 
+        </div>
+          </div>
+      
+        <input type="submit" id="signupbtn" value="Sign in ">
+      </form>
+       <div class="haves">
+          <hr>
+          <p >Already Have an Account</p>
+          <button  id="login"><a href="/login" class=" text-decoration-none">Log-in</a></button>
+       </div>
+
+  
+    </div>
+
+
+    
+    <%- include('./partials/header.ejs') %>
+   
+<script src="/javascript/signup.js"></script>
+<script src="/javascript/navtoggle.js"></script>
+</body>
+</html>

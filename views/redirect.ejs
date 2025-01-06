@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs') %>
+<body>
+    <div class="container mt-3">
+
+      
+        <div class="wel">
+            <h1 class="m-2">Welcome New User</h1>
+            <p class="text-dark m-2">Please wait</p>
+            <div class="card text-center p-2 m-2 fs-3" id="time">Page redirect in 5</div>
+        </div>
+        <div class="animate mx-auto mt-5" id="animate">
+
+        </div>
+    </div>
+
+<style>
+
+    .animate{
+        width: 200px;
+        height: 200px;
+        border: none;
+        border-radius: 50%;
+        background-size: cover;
+        background-position: center;
+        background-image: url('/images/examassist.png');
+        animation-name: animate;
+        animation-iteration-count: infinite;
+        /* animation-fill-mode: both; */
+        animation-timing-function: linear;
+        animation-duration: 2s;
+    }
+
+
+    @keyframes animate {
+        0%{
+            transform: rotate(0deg);
+        }
+        100%{
+            transform: rotate(360deg);
+        }
+
+        
+    }
+</style>
+    <script>
+        const animate = document.querySelector('#animate'),
+              time = document.querySelector('#time'),
+              duration = 6 * 1000,
+              startTime = new Date().getTime(),
+              elapsed = duration + startTime
+        let secs;
+        
+
+
+        const startIt = () =>{
+            const intervalId = setInterval(() => {
+                const currentDate = new Date().getTime()
+                const distance = elapsed - currentDate
+                const real = Math.floor((distance /duration) * 100)
+                secs = Math.floor(distance % ( 60 * 1000)/1000)
+                console.log(secs)
+                time.innerHTML = `Page redirect in ${secs}`
+
+                if(distance < 0){
+                    clearInterval(intervalId)
+            secs = 0
+             time.innerHTML = `Page redirect in ${secs}`
+                }
+                
+
+            }, 1000);
+        }
+
+        startIt()
+
+        setTimeout(() => {
+        window.location.href = "/login"
+    }, 5000);
+    </script>
+</body>
+</html>

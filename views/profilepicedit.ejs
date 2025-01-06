@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/loggedhead.ejs') %>
+<body id="creep">
+   
+
+      
+    <div class="cask">
+        <div class="div" style="display: flex; align-items: center; justify-self: center;">
+            
+            <% if (errormsg) { %>
+              <div class="card bg-white border-danger text-danger p-3 mt-5 text-center"><%= errormsg %></div>
+            <% } %>
+            
+              </div>
+        <div class="pres">
+            <h2 mt-3>Edit Profile Picture</h2>
+            <form action="/edit_pic" class="editpic_form" enctype="multipart/form-data" method="post"> 
+                <input class="profile" type="file" name="profile" id="profile">
+
+                <label for="password">Email</label>
+            <div class="name acts">
+                <input type="email" name="email" id="name" value="<%= email %>">
+            </div>
+            <div class="name acts">
+                <input type="password" name="password" id="password" placeholder="********">
+                <input type="submit" value="change" id="signupbtn">
+            </div>
+            </form>
+        </div>
+      
+    </div>
+     
+
+
+   <%- include('./partials/loggedinhead.ejs') %>
+   
+
+
+</body>
+</html>

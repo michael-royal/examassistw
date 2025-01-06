@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/loggedhead.ejs') %>
+  <body class="body">
+    <div class="cask">
+      <form class="search">
+        <input
+          type="search"
+          name="search"
+          id="search"
+          placeholder="Search By Category"
+        />
+        <input type="submit" value="Find" class="find" />
+      </form>
+
+      <div class="post_holder" id="post_holder"></div>
+    </div>
+
+    <%- include('./partials/loggedinhead.ejs') %>
+
+<%- include('./partials/script.ejs') %>
+
+
+    <script>
+      const post_holder = document.getElementById("post_holder");
+      const allowedMimeTypes = [
+        "image/jpeg",
+        "image/png",
+        "image/gif",
+        "image/bmp",
+        "image/webp",
+        "image/tiff",
+        "image/heif",
+        "image/heic",
+        "image/x-icon",
+        "image/svg+xml",
+        "image/cgm",
+        "image/x-xpixmap",
+        "image/x-portable-pixmap",
+        "image/x-portable-graymap",
+        "image/jp2",
+      ];  const post = document.createElement("div");
+                post.className = "post";
+                const fetIt = async () => {
+  const getit = await fetch("http://localhost:8080/posts_contribution/api")
+    .then((res) => res.json())
+    .then((data) => {
+      data.forEach((data) => {
+        const { postText, usersName } = data;
+
+        // Convert userPic binary data to a URL
+        const userPic = data.userPic.data;
+        const binary_data = new Uint8Array(userPic);
+        const blob = new Blob([binary_data], { type: data.userPic_mimetype });
+        const userPic_url = URL.createObjectURL(blob);
+
+        // Create the post structure
+        let postHTML = `
+          <div class="post">
+            <div class="postuser">
+              <div class="userimg" style="background-image: url('${userPic_url}')"></div>
+              <div class="cat">
+                <div class="postusername">${usersName}</div>
+                <div class="datae">${data.createdAt}</div>
+              </div>
+            </div>
+            <div class="post_info p-3">
+              <div class="card-body w-75">
+                <div class="card-text fan">
+                  ${postText}
+                </div>
+              </div>
+            </div>
+        `;
+
+        // Check if there are any files
+        if (data.files.length === 0) {
+          postHTML += `</div>`; // End post div if no files
+        } else {
+          postHTML += `<div class="row files-container">`; // Start a row for files container
+
+          // Loop through files and create elements for each
+          data.files.forEach((file) => {
+            const fileData = file.file.data;
+            const binaryData = new Uint8Array(fileData);
+            const fileBlob = new Blob([binaryData], { type: file.file_mimetype });
+            const fileUrl = URL.createObjectURL(fileBlob);
+
+            // Check if the file is a PDF
+            if (file.file_mimetype === 'application/pdf') {
+              postHTML += `
+                <div class="col-md-4 col-sm-6 file-item ">
+                  <div class="pdf-container" style="width: 100%; height: 400px;">
+                    <object data="${fileUrl}" type="application/pdf" widnn">
+                      <p>Sorry, your browser does not support PDF viewing. <a href="${fileUrl}" download>Download PDF</a>.</p>
+                    </object>
+                  </div>
+                  <a href="${fileUrl}" download class="btn btn-primary mt-2">Download PDF</a>
+                </div>
+              `;
+            } else {
+              // For non-PDF files (like images)
+              const cardImg = document.createElement('img');
+              cardImg.classList.add('card-img-top');
+              cardImg.src = fileUrl;
+              cardImg.alt = "File Image";
+
+              postHTML += `
+                <div class="col-md-4 col-sm-6 file-item">
+                  ${cardImg.outerHTML}
+                  <a href="${fileUrl}" download class="btn btn-primary mt-2">Download Image</a>
+                </div>
+              `;
+            }
+          });
+          postHTML += `</div>`; // Close the files row
+        }
+
+        // Insert the generated HTML into the post container
+        const postContainer = document.getElementById('post_holder'); // Assuming you have a container with this ID
+        postContainer.innerHTML += postHTML;
+      });
+    });
+};
+
+
+
+//       const fetIt = async () => {
+//         const getit = await fetch(
+//           "http://localhost:8080/posts_contribution/api"
+//         )
+//           .then((res) => res.json())
+//           .then((data) => {
+//             // console.log(data);
+
+//             data.forEach((data) => {
+//             //   console.log(data);
+
+//               const { postText, usersName } = data;
+//             //   console.log(postText, usersName);
+//               const userPic = data.userPic.data;
+//               const binary_data = new Uint8Array(userPic);
+//               const blob = new Blob([binary_data], {
+//                 type: data.userPic_mimetype,
+//               });
+//               const userPic_url = URL.createObjectURL(blob);
+
+//               if (data.files.length === 0) {
+              
+//                 post.innerHTML = `
+//                      <div class="post">
+//           <div class="postuser">
+//             <div
+//               class="userimg"
+//               style="background-image: url('${userPic_url}')"
+//             ></div>
+//             <div class="cat">
+//               <div class="postusername">${usersName}</div>
+//               <div class="datae">${data.createdAt}</div>
+//             </div>
+//           </div>
+//           <div class="post_info p-3">
+//             <div class="card-body w-75">
+//              <div class="card-text fan">
+//              ${postText}
+//              </div>
+             
+//             </div>
+//           </div>
+//         </div>
+                
+//                 `;
+//               }else{
+//                 console.log(data.files)
+//                 const files = data.files
+//                 files.forEach((file) =>{
+//                     fil = file.file.data
+//                     // console.log(fil)
+                   
+//               const binary_data = new Uint8Array(fil);
+//               const blob = new Blob([binary_data], {
+//                 type: fil.mimtype,
+//               });
+//               const file_url = URL.createObjectURL(blob);
+// //    console.log(file_url)
+
+//                  const cardImg = document.createElement('img')
+//                  cardImg.classList = `<img src="${file_url}" class="card-img-top" alt="image3">`
+
+//                  post.innerHTML += `
+//                     <div class="col4">${cardImg}</div>
+//                  `
+//                 })
+
+
+             
+//               }
+//               console.log(post)
+
+         
+//             });
+//           });
+//       };
+
+      fetIt();
+    </script>
+  </body>
+</html>

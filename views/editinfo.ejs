@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/loggedhead.ejs') %>
+<body id="creep">
+  
+
+    <div class="cask">
+        <div class="div" style="display: flex; align-items: center; justify-self: center;">
+            
+      <% if (errormsg) { %>
+        <div class="card bg-white border-danger text-danger p-3 mt-5 text-center"><%= errormsg %></div>
+      <% } %>
+      
+        </div>
+        <h2 class="p-2 m-4 text-center">Edit Info</h2>
+  <div class="pres">
+    <form class="main_form" method="post" action="/edit_user_info">
+        <div class="name act">
+            <div class="acts">
+                <label for="name">Username<span>*</span></label>
+                <input type="text" placeholder="John" id="firstname" name="name" value="<%= name %>">
+               
+            </div>
+        </div>
+     
+        <div class="name act">
+            
+            <div class="acts">
+                <label for="department">Department <span>*</span></label>
+                <select id="inputState" name="department">
+                    <option value="<%= department %>"><%= department %></option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Chemistry">Chemistry</option>
+                    <option value="Physics">Physics</option>
+                    <option value="PSB">Plant Science and Biotechnology</option>
+                    <option value="MCB">Micro Biology</option>
+                    <option value="AEB">Animal and Enivronmental Biology</option>
+                    <option value="Mari-time">Maritime Science</option>
+                    <option value="BCH">Biochemistry</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Geology">Geology</option>
+                </select>
+            </div>
+        </div>
+       
+             <div class="acts">
+                <label for="email">Email <span>*</span></label>
+                <input type="email" id="email" name="email" readonly value="<%= email %>">
+           
+            </div>
+            <div class="acts">
+                <label for="Password">Fill in password to verify change <span>*</span></label>
+                <input type="password" placeholder="********" id="password" name="password">
+                
+            </div>
+    
+     
+      <input type="submit" id="signupbtn" value="Save Change">
+    </form>
+  </div>
+      
+    </div>
+     
+
+
+   <%- include('./partials/loggedinhead.ejs') %>
+   
+<script src="/javascript/signup.js"></script>
+<script src="/javascript/navtoggle.js"></script>
+</body>
+</html>

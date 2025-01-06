@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/loggedhead.ejs') %>
+<body class="body">
+
+<div class="cask">
+    <div class="card border-0 kyi">
+  
+        <div class="selectsemester">
+            <div class="wet">
+                <img src="/images/examassist.png"  class="cqj" alt="">
+                <h1 class="" style="color: purple;">Welcome to our Time based Quiz Session</h1>
+            </div>
+           <div class="p">
+            <p class="text-grey">
+                To access the time based quiz you must follow a couple of steps 
+            </p>
+            <ul class="list-group">
+                <li class="list-group-item text-left">
+                    1. Choose the semester you would like to be quizzed on 
+                </li>
+                <li class="list-group-item text-left">
+                    2. Choose the Course 
+    
+                </li>
+            </ul>
+           </div>
+            <div class="choosebtn">
+                <h1 class="" style="color: purple;">Choose Semester</h1>
+                <div class="betns">
+                    <button class=" border rounded-3 blk cbtns p-2 m-3 "><a href="/firstsemester">First Semester</a></button>
+                    <button class=" border rounded-3 blk cbtns p-2 m-3"><a href="/secondsemester">Second Semester</a></button>
+                </div>
+            </div>
+     
+    </div>
+</div>
+
+
+
+    <%- include('./partials/loggedinhead.ejs') %> 
+<%- include('./partials/script.ejs') %>
+
+    <script src="/javascript/navtoggle.js"></script>
+</body>
+</html>
