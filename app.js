@@ -11,11 +11,10 @@ const express = require('express'),
  storage = multer.memoryStorage({}),
  upload = multer({storage}),
  bodyParser = require('body-parser'),
- session = require('express-session')
- const RedisStore = require('connect-redis').default;
-const Redis = require('ioredis');
+ session = require('express-session'),
 
-const redisClient = new Redis(),
+
+
  multe = require('multer'),
  parser = bodyParser.urlencoded({extended: false}),
 mongoose = require('mongoose'),
@@ -58,7 +57,7 @@ dotenv.config()
 
 // console.log(getRequests)
 app.use(session({
-    store: RedisStore({client: redisClient}),
+
     secret: process.env.SESSION_SECRET,
     saveUninitialized: false,
     resave: false,
