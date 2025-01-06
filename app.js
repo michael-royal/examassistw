@@ -11,7 +11,11 @@ const express = require('express'),
  storage = multer.memoryStorage({}),
  upload = multer({storage}),
  bodyParser = require('body-parser'),
- session = require('express-session'),
+ session = require('express-session')
+ const RedisStore = require('connect-redis')(session);
+const Redis = require('ioredis');
+
+const redisClient = new Redis(),
  multe = require('multer'),
  parser = bodyParser.urlencoded({extended: false}),
 mongoose = require('mongoose'),
@@ -54,6 +58,7 @@ dotenv.config()
 
 // console.log(getRequests)
 app.use(session({
+    store: new RedisStore({client: redisClient}),
     secret: process.env.SESSION_SECRET,
     saveUninitialized: false,
     resave: false,
@@ -275,7 +280,7 @@ app.post('/contribute',upload.fields([{name: 'file',maxCount: 3},{name: 'documen
 
 app.use(express.static(__dirname + '/node_modules/bootstrap/dist'));
 app.use(express.static('public'))
-app.listen(process.env.PORT,async()=>{
+app.listen(5000,async()=>{
     const cont = await mongoose.connect('mongodb+srv://abuka:ashlocksgrey@examassistcls.bxvxt.mongodb.net/examusers?retryWrites=true&w=majority&appName=examassistcls').then((result) =>{console.log('database connected')}).catch((err) => {throw err})
     console.log('server is listening...')
 })
