@@ -279,7 +279,7 @@ app.post('/contribute',upload.fields([{name: 'file',maxCount: 3},{name: 'documen
 
 app.use(express.static(__dirname + '/node_modules/bootstrap/dist'));
 app.use(express.static('public'))
-app.listen(5000,async()=>{
+app.listen(5010,async()=>{
     const cont = await mongoose.connect('mongodb+srv://abuka:ashlocksgrey@examassistcls.bxvxt.mongodb.net/examusers?retryWrites=true&w=majority&appName=examassistcls').then((result) =>{console.log('database connected')}).catch((err) => {throw err})
     console.log('server is listening...')
 })
