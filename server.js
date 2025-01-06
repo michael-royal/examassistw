@@ -291,3 +291,7 @@ app.listen(process.env.PORT,async()=>{
 //   }
 //     console.log('server is live')
 // })
+
+
+
+module.exports = app
