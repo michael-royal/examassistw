@@ -12,7 +12,7 @@ const express = require('express'),
  upload = multer({storage}),
  bodyParser = require('body-parser'),
  session = require('express-session')
- const RedisStore = require('connect-redis')(session);
+ const RedisStore = require('connect-redis').default;
 const Redis = require('ioredis');
 
 const redisClient = new Redis(),
