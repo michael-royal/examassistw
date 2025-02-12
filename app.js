@@ -55,7 +55,6 @@ dotenv.config()
 
 
 
-// console.log(getRequests)
 app.use(session({
 
     secret: process.env.SESSION_SECRET,
@@ -87,7 +86,6 @@ app.get('/posts_contribution/api',isAuth, async(req,res) =>{
 })
 
 app.post('/sign_new_user', upload.fields([{name: 'profile', maxCount: 1}, {name: 'document', maxCount: 1}]),async (req,res)=>{
-    // console.log(req.body,req.files)
     const {firstname,lastname,email,phone,department,faculty,gender, level, password,confirmpwd,agree} = req.body;
 
     if (firstname === '' || lastname === '' ||email === ''||phone === '' || confirmpwd === '' || password === '' || department === ' ' || gender === ' ' || level === '' || faculty === '' || Object.keys(req.files).length === 0) {
@@ -127,7 +125,6 @@ const {email,password} = req.body
             return res.render('login.ejs',{errormsg: 'No Match was found check the email or password'})
         }
         else{
-            // console.log(result)
             const user = result[0]
             const {id,name,email,phone,department,faculty,gender,level,password,mimetype,profilepic} = user
 
@@ -136,7 +133,6 @@ const {email,password} = req.body
 
             const data = profilepic.toString('base64')
             const dataurl = `data:${mimetype};base64,${data}`
-            // console.log(dataurl)
 
             if (req.session.authenticated) {
                 res.redirect('/mainpdfs')
@@ -156,7 +152,6 @@ const {email,password} = req.body
 })
 
 app.post('/edit_user_info', parser, async (req,res) =>{
-    // console.log(req.body)
     const {name,department,password}= req.body
    
   if (password === '') {
@@ -273,7 +268,7 @@ app.post('/contribute',upload.fields([{name: 'file',maxCount: 3},{name: 'documen
   
 })
 
-// ashlocksgrey
+
 
 
 
@@ -284,17 +279,7 @@ app.listen(5010,async()=>{
     console.log('server is listening...')
 })
 
-// app.listen(8080, async (err) =>{
-//   try {
-// const cont = await mongoose.connect('mongodb://localhost:27017/examusers') .then((result) => {
-//     console.log('database connected...')
 
-// })   
-//   } catch (error) {
-//     throw error
-//   }
-//     console.log('server is live')
-// })
 
 
 
